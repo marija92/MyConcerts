@@ -2,6 +2,7 @@
 <resources>
 
     <string name="lastFmUrl">http://ws.audioscrobbler.com/2.0/</string>
+    <string name="APIkey">84bbee7b51edec0b1be8424c555d10e8</string>
     
     <string name="app_name">MyConcerts</string>
     <string name="hello_world">Hello world!</string>
