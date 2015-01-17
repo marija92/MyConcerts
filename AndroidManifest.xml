@@ -31,6 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Inbox Activity -->
+        <activity android:name=".InboxActivity" />
+ 
+        <!-- Outbox Activity -->
+        <activity android:name=".OutboxActivity" />
+ 
+        <!-- Profile Activity -->
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

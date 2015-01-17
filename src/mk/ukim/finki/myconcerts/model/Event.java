@@ -1,10 +1,12 @@
 package mk.ukim.finki.myconcerts.model;
 
+import java.util.ArrayList;
+
 public class Event {
 	
 	private String lastFmID;
 	private String name;
-	private String artist;
+	private ArrayList<String> artists;
 	private String venueName;
 	private String venueCity;
 	private String venueCountry;
@@ -13,20 +15,22 @@ public class Event {
 	private double longitude;
 	private String startDate;
 	private String imageSmall;
+	private String imageBig;
 	private String ticketUrl;
 	
 	public Event(){
+		artists=new ArrayList<String>();
 		
 	}	
 	
-	public Event(String lastFmID, String name, String artist, String venueName,
+	public Event(String lastFmID, String name, ArrayList<String> artist, String venueName,
 			String venueCity, String venueCountry, String venueStreet,
 			double latitude, double longitude, String startDate,
-			String imageSmall, String ticketUrl) {
+			String imageSmall,String imageBig, String ticketUrl) {
 		super();
 		this.lastFmID = lastFmID;
 		this.name = name;
-		this.artist = artist;
+		this.artists = artist;
 		this.venueName = venueName;
 		this.venueCity = venueCity;
 		this.venueCountry = venueCountry;
@@ -35,6 +39,7 @@ public class Event {
 		this.longitude = longitude;
 		this.startDate = startDate;
 		this.imageSmall = imageSmall;
+		this.imageBig=imageBig;
 		this.ticketUrl = ticketUrl;
 	}
 	
@@ -54,12 +59,19 @@ public class Event {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getArtist() {
-		return artist;
+
+	public ArrayList<String> getArtist() {
+		return artists;
 	}
-	public void setArtist(String artist) {
-		this.artist = artist;
+
+	public void setArtists(ArrayList<String> artist) {
+		this.artists = artist;
 	}
+	
+	public void addArtists(String artist){
+		this.artists.add(artist);
+	}
+
 	public String getVenueName() {
 		return venueName;
 	}
@@ -108,6 +120,15 @@ public class Event {
 	public void setImageSmall(String imageSmall) {
 		this.imageSmall = imageSmall;
 	}
+	
+	public String getImageBig() {
+		return imageBig;
+	}
+
+	public void setImageBig(String imageBig) {
+		this.imageBig = imageBig;
+	}
+
 	public String getTicketUrl() {
 		return ticketUrl;
 	}
