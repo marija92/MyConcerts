@@ -17,10 +17,15 @@ import org.json.simple.parser.ParseException;
 import mk.ukim.finki.myconcerts.R;
 import mk.ukim.finki.myconcerts.adapters.EventItemAdapter;
 import mk.ukim.finki.myconcerts.model.Event;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.style.BulletSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -60,6 +65,22 @@ public class Fragment2 extends Fragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				if(!isNetworkAvailable()){
+					 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				        builder.setMessage("Internet not available, check your internet connectivity and try again")
+				               .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				                   public void onClick(DialogInterface dialog, int id) {
+				                       
+				                   }
+				               })
+				               .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				                   public void onClick(DialogInterface dialog, int id) {
+				                       // User cancelled the dialog
+				                   }
+				               });
+				      builder.show();  
+				}
+				else
 				showEventsByArtist(v);
 				//adapter.notifyDataSetChanged();
 			}
@@ -237,6 +258,14 @@ public class Fragment2 extends Fragment{
 		}
 
 		return eventList;
+	}
+	
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
+				.getSystemService(getActivity().CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 	}
 
 }
