@@ -3,6 +3,7 @@ package mk.ukim.finki.myconcerts.fragments;
 import mk.ukim.finki.myconcerts.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

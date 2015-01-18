@@ -6,6 +6,7 @@ import mk.ukim.finki.myconcerts.fragments.Fragment3;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.ListFragment;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 	 

@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import mk.ukim.finki.myconcerts.adapters.EventItemAdapter;
 import mk.ukim.finki.myconcerts.adapters.TabsPagerAdapter;
 import mk.ukim.finki.myconcerts.model.Event;
 import android.app.ActionBar.Tab;
@@ -24,14 +25,23 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
+	
+
+	/***TABS***/
+	
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
+
 	// Tab titles
 	private String[] tabs = { "Upcoming", "Artists", "Nearest" };
 
@@ -46,6 +56,7 @@ public class MainActivity extends FragmentActivity implements
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
+		//da vidam so ke smene inace false
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -86,127 +97,6 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-	}
-
-	public void showEventsByArtist(View view) {
-		EditText artistEdit = (EditText) findViewById(R.id.editText);
-		String artistName = artistEdit.getText().toString();
-		if (artistName.contains(" ")) {
-			artistName = artistName.replace(" ", "%20");
-		}
-		String serverURL = getString(R.string.lastFmUrl);
-		String apiKey = getString(R.string.APIkey);
-		String url = String.format(
-				"%s?method=artist.getevents&artist=%s&api_key=%s&format=json",
-				serverURL, artistName, apiKey);
-		System.out.println(url);
-		new EventDownloader().execute(url);
-	}
-
+	}	
 	
-	
-	
-	private class EventDownloader extends AsyncTask<String, Void, String> {
-
-		protected String doInBackground(String... urls) {
-			String response = "";
-			String url = urls[0];
-
-			DefaultHttpClient client = new DefaultHttpClient();
-			HttpGet httpGet = new HttpGet(url);
-			try {
-				HttpResponse execute = client.execute(httpGet);
-				InputStream content = execute.getEntity().getContent();
-
-				BufferedReader buffer = new BufferedReader(
-						new InputStreamReader(content));
-				String s = "";
-				while ((s = buffer.readLine()) != null) {
-					response += s;
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return response;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			System.out.println(result);
-			// vraka arraylist od event
-			getEvents(result);
-		}
-	}
-
-	public Event createEvent(JSONObject obj) {
-		Event event = new Event();
-
-		event.setLastFmID(obj.get("id").toString());
-		event.setName(obj.get("title").toString());
-		event.setStartDate(obj.get("startDate").toString());
-
-		ArrayList<JSONObject> images = (ArrayList<JSONObject>) obj.get("image");
-		event.setImageSmall(images.get(1).get("#text").toString());
-		event.setImageBig(images.get(3).get("#text").toString());
-
-		JSONObject artists = (JSONObject) obj.get("artists");
-		Object art = artists.get("artist");
-		if (art instanceof JSONArray) {
-			ArrayList<JSONObject> artist = (ArrayList<JSONObject>) artists.get("artist");
-			for (Object a : artist) {
-				event.addArtists(a.toString());
-			}
-		} else {
-			event.addArtists(art.toString());
-		}
-
-		JSONObject venue = (JSONObject) obj.get("venue");
-		event.setVenueName(venue.get("name").toString());
-		JSONObject venueDetails = (JSONObject) venue.get("location");
-		event.setVenueCity(venueDetails.get("city").toString());
-		event.setVenueCountry(venueDetails.get("country").toString());
-		event.setVenueStreet(venueDetails.get("street").toString());
-		JSONObject geo = (JSONObject) venueDetails.get("geo:point");
-		if (geo.get("geo:lat") != "") {
-			event.setLatitude(Double.parseDouble(geo.get("geo:lat").toString()));
-		}
-		if (geo.get("geo:long") != "") {
-			event.setLongitude(Double.parseDouble(geo.get("geo:long")
-					.toString()));
-		}
-
-		return event;
-	}
-
-	public ArrayList<Event> getEvents(String result) {
-
-		ArrayList<Event> eventList = new ArrayList<Event>();
-
-		JSONParser jsonParser = new JSONParser();
-		JSONObject jsonObject = null;
-		try {
-			jsonObject = (JSONObject) jsonParser.parse(result);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("GRESKAAAAAAAAA");
-		}
-
-		JSONObject event = (JSONObject) jsonObject.get("events");
-		JSONArray ev = (JSONArray) event.get("event");
-		if (ev == null) {
-			return null;
-		} else {
-			Iterator<JSONObject> iterator = ev.iterator();
-			while (iterator.hasNext()) {
-				JSONObject tmpObj = iterator.next();
-				Event e = createEvent(tmpObj);
-				eventList.add(e);
-			}
-		}
-
-		return eventList;
-	}
-
 }
