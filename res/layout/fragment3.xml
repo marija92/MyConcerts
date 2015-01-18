@@ -4,40 +4,60 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash"
     android:orientation="vertical" >
-    
-
+       
+        <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:max="3000"/>
+        
+      <TextView
+        android:id="@+id/radius"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="15dp"
+        android:text=""
+        android:layout_below="@id/seekBar"
+        android:textSize="15sp" />
     
     <Button
         android:id="@+id/showMap"
-        android:layout_width="fill_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:background="#FFEA94"
+        android:layout_toRightOf="@id/seekBar"
+        android:layout_alignParentRight="true"
         android:text="Show map" 
-        android:textSize="24dp"
         android:drawableLeft="@drawable/map_logo"
         android:textColor="#000" />
+    
+ 
 
-    <!--
+     <TextView
+        android:id="@+id/noNear"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/showMap"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        android:text="" />
+   
     <ListView
-        android:id="@+id/nearesEvents"
+        android:id="@+id/nearestEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/showMap"
         android:longClickable="true" >
     </ListView>
-    -->
+    
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Tuka da se prikazuva lista od najbliski koncerti"
-        android:textSize="20dp" />
+   
 
 </RelativeLayout>
