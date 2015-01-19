@@ -23,6 +23,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -106,20 +107,45 @@ public class Fragment3 extends Fragment{
         
        
         
-      /*  showMap=(Button) getActivity().findViewById(R.id.showMap);
+        showMap=(Button) rootView.findViewById(R.id.map);
         showMap.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent=new Intent(getActivity(),MapActivity.class);
+				intent.putExtra("latitudes", getLats(listOfEvents));
+				intent.putExtra("longitudes", getLongs(listOfEvents));
+				intent.putExtra("names",getNames(listOfEvents));
 				startActivity(intent);
 			}
-		});*/
+		});
          
         return rootView;
     }
 	
+	public String[] getNames(ArrayList<Event> evs){
+		String [] name=new String[evs.size()];
+		for(int i=0;i<evs.size();i++){
+			name[i]=evs.get(i).getName();
+		}
+		return name;
+	}
+	
+	public double[] getLats(ArrayList<Event> evs){
+		double [] lats=new double[evs.size()];
+		for(int i=0;i<evs.size();i++){
+			lats[i]=evs.get(i).getLatitude();
+		}
+		return lats;
+	}
+	public double[] getLongs(ArrayList<Event> evs){
+		double [] longs=new double[evs.size()];
+		for(int i=0;i<evs.size();i++){
+			longs[i]=evs.get(i).getLongitude();
+		}
+		return longs;
+	}
 	
 	public void showEventsByPlace(View view) {
 		String lat=String.valueOf(myLat);

@@ -23,7 +23,10 @@
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 	
-	
+	<uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+ 
 
     <application
         android:allowBackup="true"
@@ -58,7 +61,7 @@
         
          <meta-data 
         android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyDsY1vPYxONukfzxq38lVpUSFFBN51Wxnc"/>
+        android:value="AIzaSyB1MPWIf3auiM0h6wOTlJyCT9TMXih1Y4Q"/>
   
     </application>
 
