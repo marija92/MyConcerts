@@ -1,5 +1,7 @@
 package mk.ukim.finki.myconcerts;
 
+import java.util.Random;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
@@ -21,10 +23,13 @@ public class MapActivity extends FragmentActivity {
 		
 			
 		private void addMarkers(double[] lats, double longs[], String[] titles) {
+			Random rand=new Random();
+			//rand.
 	        if (googleMap != null) {   	         
 	        	         
-	        	for(int i=0;i<lats.length;i++){
-	        		LatLng point=new LatLng(lats[i], longs[i]);
+	        	for(int i=0;i<lats.length;i++){	        		
+	        		LatLng point = new LatLng(lats[i]+rand.nextDouble()/100000, longs[i]+rand.nextDouble()/100000);	        		
+	        		//LatLng point=new LatLng(lats[i], longs[i]);
 	        		googleMap.addMarker(new MarkerOptions().position(point).title(titles[i]));
 	        	}
 	        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(current, 5));        	

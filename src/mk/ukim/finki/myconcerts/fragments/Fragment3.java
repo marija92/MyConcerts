@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import mk.ukim.finki.myconcerts.DetailsActivity;
 import mk.ukim.finki.myconcerts.GPSTracker;
 import mk.ukim.finki.myconcerts.MapActivity;
 import mk.ukim.finki.myconcerts.R;
@@ -30,8 +31,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -62,6 +65,16 @@ public class Fragment3 extends Fragment{
 		
 		listOfEvents=new ArrayList<Event>();
 		eventListView=(ListView) rootView.findViewById(R.id.nearestEvents);
+		eventListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				showDetails(position);
+				
+			}
+		});
 		noNear=(TextView) rootView.findViewById(R.id.noNear);
 		adapter=new EventItemAdapter(getActivity().getBaseContext());
 		
@@ -125,6 +138,8 @@ public class Fragment3 extends Fragment{
     }
 	
 	public String[] getNames(ArrayList<Event> evs){
+		if (evs==null)
+			return null;
 		String [] name=new String[evs.size()];
 		for(int i=0;i<evs.size();i++){
 			name[i]=evs.get(i).getName();
@@ -133,6 +148,8 @@ public class Fragment3 extends Fragment{
 	}
 	
 	public double[] getLats(ArrayList<Event> evs){
+		if (evs==null)
+			return null;
 		double [] lats=new double[evs.size()];
 		for(int i=0;i<evs.size();i++){
 			lats[i]=evs.get(i).getLatitude();
@@ -140,11 +157,28 @@ public class Fragment3 extends Fragment{
 		return lats;
 	}
 	public double[] getLongs(ArrayList<Event> evs){
+		if (evs==null)
+			return null;
 		double [] longs=new double[evs.size()];
 		for(int i=0;i<evs.size();i++){
 			longs[i]=evs.get(i).getLongitude();
 		}
 		return longs;
+	}
+	
+	public void showDetails(int position){
+		
+		Intent intent=new Intent(getActivity(),DetailsActivity.class);
+		
+		intent.putExtra("name", listOfEvents.get(position).getName());
+		intent.putExtra("artists",listOfEvents.get(position).artistsToString());
+		intent.putExtra("venueName",listOfEvents.get(position).getVenueName());
+		intent.putExtra("venueStreet",listOfEvents.get(position).getVenueStreet());
+		intent.putExtra("venueCity",listOfEvents.get(position).getVenueCity());
+		intent.putExtra("venueCountry",listOfEvents.get(position).getVenueCountry());
+		intent.putExtra("startDate",listOfEvents.get(position).getStartDate());
+		intent.putExtra("image",listOfEvents.get(position).getImageBig());
+		startActivity(intent);		
 	}
 	
 	public void showEventsByPlace(View view) {
@@ -153,7 +187,7 @@ public class Fragment3 extends Fragment{
 		String serverURL = getString(R.string.lastFmUrl);
 		String apiKey = getString(R.string.APIkey);
 		String url = String.format(
-				"%s?method=geo.getevents&lat=%s&long=%s&distance=%s&api_key=%s&format=json",
+				"%s?method=geo.getevents&lat=%s&long=%s&distance=%s&limit=5000&api_key=%s&format=json",
 				serverURL, lat,lon,radiusVal, apiKey);
 		System.out.println(url);
 		System.out.println(url);

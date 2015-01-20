@@ -71,6 +71,14 @@ public class Event {
 	public void addArtists(String artist){
 		this.artists.add(artist);
 	}
+	
+	public String artistsToString(){
+		String s="";
+		for(String a:artists){
+			s+=a+"  ";
+		}
+		return s;
+	}
 
 	public String getVenueName() {
 		return venueName;

@@ -14,12 +14,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import mk.ukim.finki.myconcerts.DetailsActivity;
+import mk.ukim.finki.myconcerts.MapActivity;
 import mk.ukim.finki.myconcerts.R;
 import mk.ukim.finki.myconcerts.adapters.EventItemAdapter;
 import mk.ukim.finki.myconcerts.model.Event;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -31,6 +34,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +47,7 @@ public class Fragment2 extends Fragment{
 	ListView eventListView;
 	View rootView;
 	EventItemAdapter adapter;
-	public ArrayList<Event> listOfEvents;
+	ArrayList<Event> listOfEvents;
 	Button search;
 	TextView noEvents;
 	
@@ -87,19 +91,36 @@ public class Fragment2 extends Fragment{
 		});
 
 		eventListView.setAdapter(adapter);
-		eventListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+		eventListView.setOnItemClickListener(new OnItemClickListener() {
+
 			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View parent,
-					int position, long id) {
-				Toast.makeText(getActivity().getBaseContext(), "Item long click",
-						Toast.LENGTH_LONG).show();
-				return true;
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {				
+				showDetails(position);
+				System.out.println("pos:"+position+" longID: "+id);
+				// TODO Auto-generated method stub
+				
 			}
-		}); 
+		});
          super.onCreateView(inflater,container,savedInstanceState);		
            
          return rootView;      
     }
+	
+	public void showDetails(int position){
+				
+		Intent intent=new Intent(getActivity(),DetailsActivity.class);
+		
+		intent.putExtra("name", listOfEvents.get(position).getName());
+		intent.putExtra("artists",listOfEvents.get(position).artistsToString());
+		intent.putExtra("venueName",listOfEvents.get(position).getVenueName());
+		intent.putExtra("venueStreet",listOfEvents.get(position).getVenueStreet());
+		intent.putExtra("venueCity",listOfEvents.get(position).getVenueCity());
+		intent.putExtra("venueCountry",listOfEvents.get(position).getVenueCountry());
+		intent.putExtra("startDate",listOfEvents.get(position).getStartDate());
+		intent.putExtra("image",listOfEvents.get(position).getImageBig());
+		startActivity(intent);		
+	}
 	
 	public void showEventsByArtist(View view) {
 		EditText artistEdit = (EditText) rootView.findViewById(R.id.editText);
@@ -110,7 +131,7 @@ public class Fragment2 extends Fragment{
 		String serverURL = getString(R.string.lastFmUrl);
 		String apiKey = getString(R.string.APIkey);
 		String url = String.format(
-				"%s?method=artist.getevents&artist=%s&api_key=%s&format=json",
+				"%s?method=artist.getevents&artist=%s&limit=5000&api_key=%s&format=json",
 				serverURL, artistName, apiKey);
 		System.out.println(url);
 		new EventDownloader().execute(url);

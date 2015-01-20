@@ -92,11 +92,11 @@ public class EventItemAdapter extends BaseAdapter implements
 		
 		//holder.image.setI
 		holder.eventName.setText(item.getName());
-		String artists="";
+		/*String artists="";
 		for(int i=0;i<item.getArtist().size();i++){
 			artists+=" "+item.getArtist().get(i);
-		}
-		holder.eventArtist.setText("Artists: "+artists);
+		}*/
+		holder.eventArtist.setText("Artists: "+item.artistsToString());
 		String venue="Venue: "+item.getVenueName()+"  "+item.getVenueCity()+"  "+item.getVenueCountry();
 		holder.eventVenue.setText(venue);
 		holder.eventDate.setText("Date: "+item.getStartDate());
