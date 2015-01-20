@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="25sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="" />
 
 
@@ -47,14 +47,14 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="Artist:" />
 
     <TextView
         android:id="@+id/eventArtist1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="" />
 
     
@@ -63,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:textStyle="bold"
         android:text="Place:" />
      
@@ -71,7 +71,7 @@
         android:id="@+id/eventVenueName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="" />
      
      
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        	android:textSize="20sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:textStyle="bold"
         android:text="Street:" />
      
@@ -88,7 +88,7 @@
         android:id="@+id/eventVenueStreet1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="" />
      
       <TextView
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:textStyle="bold"
         android:text="City:" />
       
@@ -104,7 +104,7 @@
         android:id="@+id/eventVenueCity1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="" />
       
        <TextView
@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:textStyle="bold"
         android:text="Country:" />
        
@@ -120,7 +120,7 @@
         android:id="@+id/eventVenueCountry1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		android:gravity="center_horizontal"
+		android:gravity="center|center_horizontal"
         android:text="" />
         
     <TextView
@@ -128,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:textStyle="bold"
         android:text="Start Date:" />
     
@@ -136,7 +136,7 @@
         android:id="@+id/eventStartDate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="" />
     
      <Button
@@ -144,7 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
+        android:gravity="center|center_horizontal"
         android:text="Add To Calendar" 
 		 />
     </LinearLayout>
