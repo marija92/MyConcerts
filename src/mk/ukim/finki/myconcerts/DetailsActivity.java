@@ -26,7 +26,7 @@ public class DetailsActivity extends Activity {
 	public void init(){
 		aquery=new AQuery(this);
 		image=(ImageView)findViewById(R.id.image);
-		name=(TextView) findViewById(R.id.eventName1);
+		name=(TextView) findViewById(R.id.eventName1);		
 		artists=(TextView) findViewById(R.id.eventArtist1);
 		venue=(TextView) findViewById(R.id.eventVenueName1);
 		venueStreet=(TextView) findViewById(R.id.eventVenueStreet1);

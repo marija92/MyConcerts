@@ -14,6 +14,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
     
+    
+     <TextView
+        android:id="@+id/eventName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="" />
+    
+    
     <ImageView
         android:id="@+id/image"
         android:layout_width="fill_parent"
@@ -21,57 +34,99 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-         />
+        android:layout_marginBottom="5dp" />
+    
+    <View
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:background="#33b5e5"/>
+    
     
      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
     >
     
-       <TextView
-        android:id="@+id/eventName1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:gravity="center|center_horizontal"
-        android:text="" />
-
-
-    
+       
     <TextView
         android:id="@+id/eventArtistCons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:gravity="center|center_horizontal"
-        android:text="Artist:" />
+        android:textSize="22sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="Artists" />
 
     <TextView
         android:id="@+id/eventArtist1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
         android:text="" />
+    
+     <View
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:background="#33b5e5"
+    android:layout_marginTop="3dp"/>
+       
+        <TextView
+        android:id="@+id/eventStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:text="Start Date" />
+        
+         
+    
+    <TextView
+        android:id="@+id/eventStartDate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="20sp"
+        android:text="" />
+    
 
+     <View
+    android:layout_width="fill_parent"
+    android:layout_height="2dp"
+    android:layout_marginTop="3dp"
+    android:background="#33b5e5"/>
+    
     
      <TextView
         android:id="@+id/eventVenueName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center|center_horizontal"
+        android:textSize="22sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:text="Place:" />
+        android:layout_marginTop="5dp"
+        android:text="Place" />
      
       <TextView
         android:id="@+id/eventVenueName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:text="" />
      
      
@@ -79,75 +134,81 @@
         android:id="@+id/eventVenueStreet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       	android:textSize="20sp"
-        android:gravity="center|center_horizontal"
+       	android:textSize="22sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:text="Street:" />
+        android:layout_marginTop="5dp"
+        android:text="Street" />
      
         <TextView
         android:id="@+id/eventVenueStreet1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:text="" />
      
       <TextView
         android:id="@+id/eventVenueCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center|center_horizontal"
+        android:textSize="22sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         android:textStyle="bold"
-        android:text="City:" />
+        android:text="City" />
       
-         <TextView
+       <TextView
         android:id="@+id/eventVenueCity1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center|center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:text="" />
       
        <TextView
         android:id="@+id/eventVenueCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center|center_horizontal"
+        android:textSize="22sp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:text="Country:" />
+        android:layout_marginTop="5dp"
+        android:text="Country" />
        
        <TextView
         android:id="@+id/eventVenueCountry1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		android:gravity="center|center_horizontal"
+		android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
         android:text="" />
-        
-    <TextView
-        android:id="@+id/eventStartDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center|center_horizontal"
-        android:textStyle="bold"
-        android:text="Start Date:" />
-    
-    <TextView
-        android:id="@+id/eventStartDate1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|center_horizontal"
-        android:text="" />
+       
+      
+     
+    </LinearLayout>
     
      <Button
         android:id="@+id/addToCal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:gravity="center|center_horizontal"
+        android:background="#33b5e5"
+        android:textColor="#FFF"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="Add To Calendar" 
 		 />
-    </LinearLayout>
    
 </LinearLayout>
 </ScrollView>
