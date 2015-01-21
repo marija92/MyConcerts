@@ -81,22 +81,14 @@ public class EventItemAdapter extends BaseAdapter implements
 			convertView = holder.itemLayout;
 			convertView.setTag(holder);
 		}
-		
-		
 		holder = (EventHolder) convertView.getTag();
-
-		
 		aquery.id(holder.image).image(item.getImageSmall(),false,false);
-		//Toast.makeText(aq.getContext(), "Download initiated...",Toast.LENGTH_SHORT).show();
-        
-		
-		//holder.image.setI
 		holder.eventName.setText(item.getName());
-		/*String artists="";
-		for(int i=0;i<item.getArtist().size();i++){
-			artists+=" "+item.getArtist().get(i);
-		}*/
-		holder.eventArtist.setText("Artists: "+item.artistsToString());
+		String art = item.artistsToString();
+		if(art.length() > 60){
+			art = art.substring(0,60) + "...";
+		}
+		holder.eventArtist.setText("Artists: "+art);
 		String venue="Venue: "+item.getVenueName()+"  "+item.getVenueCity()+"  "+item.getVenueCountry();
 		holder.eventVenue.setText(venue);
 		holder.eventDate.setText("Date: "+item.getStartDate());

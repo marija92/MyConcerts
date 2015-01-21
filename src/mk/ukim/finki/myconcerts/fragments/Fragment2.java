@@ -18,6 +18,7 @@ import mk.ukim.finki.myconcerts.DetailsActivity;
 import mk.ukim.finki.myconcerts.MapActivity;
 import mk.ukim.finki.myconcerts.R;
 import mk.ukim.finki.myconcerts.adapters.EventItemAdapter;
+import mk.ukim.finki.myconcerts.db.EventDao;
 import mk.ukim.finki.myconcerts.model.Event;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -63,6 +64,8 @@ public class Fragment2 extends Fragment{
 		listOfEvents= new ArrayList<Event>();
 		noEvents=(TextView) rootView.findViewById(R.id.noEvents);
 		search=(Button) rootView.findViewById(R.id.btnSearch);
+		
+		
 				
 		search.setOnClickListener(new OnClickListener() {
 			
@@ -119,6 +122,8 @@ public class Fragment2 extends Fragment{
 		intent.putExtra("venueCountry",listOfEvents.get(position).getVenueCountry());
 		intent.putExtra("startDate",listOfEvents.get(position).getStartDate());
 		intent.putExtra("image",listOfEvents.get(position).getImageBig());
+		intent.putExtra("lastFmID", listOfEvents.get(position).getLastFmID());
+		intent.putExtra("imgSmall", listOfEvents.get(position).getImageSmall());
 		startActivity(intent);		
 	}
 	
@@ -264,9 +269,17 @@ public class Fragment2 extends Fragment{
 		}
 
 		JSONObject event = (JSONObject) jsonObject.get("events");
+		
 		if(event==null)
 			return null;
-		JSONArray ev = (JSONArray) event.get("event");
+		JSONArray ev=null;
+		if(event.get("event") instanceof JSONArray){
+			ev = (JSONArray) event.get("event");
+		}
+		else if (event.get("event") instanceof JSONObject){
+			ev=new JSONArray();
+			ev.add(event.get("event"));
+		}		
 		if (ev == null)
 			return null;
 		else {

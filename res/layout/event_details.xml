@@ -207,7 +207,7 @@
         android:textSize="22sp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Add To Calendar" 
+        android:text="" 
 		 />
    
 </LinearLayout>

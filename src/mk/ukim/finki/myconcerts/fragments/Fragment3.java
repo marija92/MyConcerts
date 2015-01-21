@@ -178,6 +178,8 @@ public class Fragment3 extends Fragment{
 		intent.putExtra("venueCountry",listOfEvents.get(position).getVenueCountry());
 		intent.putExtra("startDate",listOfEvents.get(position).getStartDate());
 		intent.putExtra("image",listOfEvents.get(position).getImageBig());
+		intent.putExtra("lastFmID", listOfEvents.get(position).getLastFmID());
+		intent.putExtra("imgSmall", listOfEvents.get(position).getImageSmall());
 		startActivity(intent);		
 	}
 	
